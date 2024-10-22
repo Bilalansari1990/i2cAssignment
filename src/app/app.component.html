@@ -1,0 +1,145 @@
+<main class="main-container">
+  <header>
+    <app-header></app-header>
+  </header>
+
+  <section id="header-section" class="section--yellow">
+    <div class="row">
+      <div class="col-lg-6 col-sm-12 pt-5 pb-5">
+        <h1>Lorem ipsum <span class="yellow-text">dolor</span> sit amet yo 👋</h1>
+        <div class="_list">
+          <div class="item-wrapper d-flex">
+            <img src="./assets/avatar-1.png" alt="Avatar of Andrew Schultz" loading="lazy" />
+            <div class="item">
+              <p>Andrew Schultz</p>
+              <span>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Vitae, in tristique senectus dui pharetra sit.
+              </span>
+            </div>
+          </div>
+
+          <!-- Example for consistent BEM naming -->
+          <div class="item-wrapper d-flex">
+            <img src="./assets/Rectangle-61.png" alt="Image related to Andrew Schultz" loading="lazy" />
+            <div class="item">
+              <p>Andrew Schultz</p>
+              <span>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Vitae, in tristique senectus dui pharetra sit.
+              </span>
+            </div>
+          </div>
+
+          <!-- Remove last empty item or add content -->
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-12 _right"></div>
+    </div>
+  </section>
+
+  <section id="features-section" class="d-flex justify-content-between align-items-center">
+    <div class="feature-item d-flex align-items-center">
+      <img class="mr-3" src="./assets/Group 75.png" alt="24/7 Support" loading="lazy" />
+      <div>
+        <h3>24/7 Support</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+      </div>
+    </div>
+
+    <div class="feature-item d-flex align-items-center">
+      <img class="mr-3" src="./assets/img (1).png" alt="1000+ Reviews" loading="lazy" />
+      <div>
+        <h3>1000+ Reviews</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+      </div>
+    </div>
+
+    <div class="feature-item d-flex align-items-center">
+      <img class="mr-3" src="./assets/img.png" alt="More features" loading="lazy" />
+      <div>
+        <h3>And more!</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="clients-section" class="mb-5 pb-5 pt-5 mt-5">
+    <div class="main">
+      <h2>Trusted By</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />
+        Vitae, in tristique senectus dui pharetra sit.
+      </p>
+    </div>
+    <div class="client-slider pt-5 pb-5">
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+        <div *ngFor="let slide of slides; trackBy: trackByImg">
+          <div ngxSlickItem class="slide">
+            <img [src]="slide.img" alt="Client logo" width="100%" loading="lazy" />
+          </div>
+        </div>
+      </ngx-slick-carousel>
+    </div>
+  </section>
+
+  <section id="registration-section" class="pt-5 mt-5">
+    <div class="row">
+      <div class="col-lg-6 col-sm-12 _left"></div>
+      <div class="col-lg-6 col-sm-12 _right">
+        <div class="registration-form">
+          <h3>Registration Form</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Vitae, in tristique senectus dui pharetra sit.
+          </p>
+          <form (ngSubmit)="onSubmit()">
+            <div class="input-field d-flex flex-column mb-3">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                [(ngModel)]="formData.name"
+                placeholder="Enter your Name"
+                required
+              />
+            </div>
+
+            <div class="input-field d-flex flex-column mb-3">
+              <label for="company">Company*</label>
+              <input
+                type="text"
+                id="company"
+                name="company"
+                [(ngModel)]="formData.company"
+                placeholder="Enter your Company"
+                required
+              />
+            </div>
+
+            <div class="input-field d-flex flex-column mb-3">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                [(ngModel)]="formData.email"
+                placeholder="Enter your Email Address"
+                required
+              />
+            </div>
+
+            <div class="registration-form-button">
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <app-footer></app-footer>
+  </footer>
+</main>
