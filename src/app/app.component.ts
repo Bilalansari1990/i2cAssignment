@@ -27,7 +27,7 @@ interface Registration {
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  title = 'i2c-assesment';
+  title = 'i2c-Assignment';
 
   slides = [
     { img: 'assets/Microsoft logo.png' },
@@ -37,6 +37,7 @@ export class AppComponent implements OnInit {
     { img: 'assets/Vector.png' },
     { img: 'assets/g3.png' },
   ];
+
   slideConfig = {
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -58,32 +59,46 @@ export class AppComponent implements OnInit {
     company: '',
   };
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.checkIfFormSubmitted();
+  }
 
-  checkIfFormSubmitted() {
-    const storedData = localStorage.getItem('formData');
+  checkIfFormSubmitted(): boolean {
+    const storedData = this.getStoredFormData();
     if (storedData) {
       this.formSubmitted = true;
-      this.formData = JSON.parse(storedData);
+      this.formData = storedData;
       return true;
-    } else {
-      return false;
+    }
+    return false;
+  }
+
+  getStoredFormData(): Registration | null {
+    try {
+      const data = localStorage.getItem('formData');
+      return data ? JSON.parse(data) : null;
+    } catch (error) {
+      console.error('Error parsing form data from localStorage', error);
+      return null;
     }
   }
 
   onSubmit(event: Event) {
-    if (this.checkIfFormSubmitted()) {
+    event.preventDefault();
+    if (this.formSubmitted) {
       return alert('Form already submitted');
     }
-    event.preventDefault();
-    const form = event.target as HTMLFormElement;
 
     if (this.validateForm()) {
-      localStorage.setItem('formData', JSON.stringify(this.formData));
+      this.storeFormData();
       this.formSubmitted = true;
       this.resetForm();
       alert('Data Saved Successfully');
     }
+  }
+
+  storeFormData() {
+    localStorage.setItem('formData', JSON.stringify(this.formData));
   }
 
   resetForm() {
